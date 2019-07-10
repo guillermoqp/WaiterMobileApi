@@ -4,14 +4,6 @@ function desactivar_errores() {
 	error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED & ~E_STRICT & ~E_USER_NOTICE & ~E_USER_DEPRECATED);
 	//error_reporting(E_ALL & ~E_NOTICE);
 }
-function url_actual($agregaUri=null) {
-    if($agregaUri!=null&&$agregaUri!=""){
-		$url_actual=str_replace("index.php/","",current_url()."/".$agregaUri);
-    }else{
-    	$url_actual=str_replace("index.php/","",current_url()."/");
-    }
-    return $url_actual;
-}
 function setHeaders() {
 	header("Access-Control-Allow-Origin: *");
 	header("Access-Control-Allow-Headers: Content-Type");
@@ -31,7 +23,4 @@ function dateTimeToStringFormat($formatoFecha,$fecha) {
 function dateTimeNowToString() {
 	$now=new DateTime();
 	return $now->format("Y-m-d H:i:s");
-}
-function clearMsSqlError($string) {
-	return str_replace("[Microsoft][ODBC Driver 11 for SQL Server][SQL Server]An invalid parameter or option was specified for procedure","",$string);
 }
