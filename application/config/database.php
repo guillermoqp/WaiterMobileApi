@@ -6,7 +6,7 @@ $active_record=TRUE;
     "hostname"=>"127.0.0.1",
     "username"=>"root",
     "password"=>"123456",
-    "database"=>"waiter_mobile"
+    "database"=>"dbwaitermobile"
 );*/
 $configBD=array(
     "hostname"=>"db4free.net",
