@@ -51,4 +51,15 @@ Class Mesas extends REST_Controller {
         $this->set_response(getNoAutorizadoResponse(),REST_Controller::HTTP_OK);
         return;
     }
+    public function importeByMesa_get($idMesa) {
+        if(jwt_helper::tokenValido($this->input->request_headers())) {
+            $importe=$this->mesa_model->getImportebyMesa($idMesa);
+            $datos["importe"]=$importe["importe"];
+            $response=array("codigoRespuesta"=>0,"mensajeRespuesta"=>"Exito al ejecutar servicio","datos"=>$datos);
+            $this->set_response($response,REST_Controller::HTTP_OK);
+            return;
+        }
+        $this->set_response(getNoAutorizadoResponse(),REST_Controller::HTTP_OK);
+        return;
+    }
 }

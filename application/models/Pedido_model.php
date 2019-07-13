@@ -27,11 +27,45 @@ class Pedido_Model extends CI_Model {
         $query->free_result();
         return $pedidos_entregados;
     }
-    public function cambiarPedido($idMesa,$id_plato,$cantidad) {
+    public function cambiar_pedido($idMesa,$id_plato,$cantidad) {
         $respuesta=array("codigoRespuesta"=>0,"mensajeRespuesta"=>"Exito al cambiarPedido.");
         $sql="CALL cambiarPedido(?,?,?)";
         $this->db->trans_begin();
         $query=$this->db->query($sql,array($idMesa,$id_plato,$cantidad));
+        if ($this->db->trans_status()===FALSE) {
+            $db_error=$this->db->error();
+            if (strcmp($db_error["code"],"00000")!=0) {
+                $respuesta=array("codigoRespuesta"=>1,"mensajeRespuesta"=>$db_error['message']);
+                $this->db->trans_rollback();
+            }
+        }
+        if ($this->db->trans_status()!=FALSE){
+            $this->db->trans_commit();
+        }
+        return $respuesta;
+    }
+    public function insertar_pedido($id_mozo,$idMesa,$id_plato,$cantidad) {
+        $respuesta=array("codigoRespuesta"=>0,"mensajeRespuesta"=>"Exito al insertar_pedido.");
+        $sql="CALL insertar_pedido(?,?,?,?)";
+        $this->db->trans_begin();
+        $query=$this->db->query($sql,array($id_mozo,$idMesa,$id_plato,$cantidad));
+        if ($this->db->trans_status()===FALSE) {
+            $db_error=$this->db->error();
+            if (strcmp($db_error["code"],"00000")!=0) {
+                $respuesta=array("codigoRespuesta"=>1,"mensajeRespuesta"=>$db_error['message']);
+                $this->db->trans_rollback();
+            }
+        }
+        if ($this->db->trans_status()!=FALSE){
+            $this->db->trans_commit();
+        }
+        return $respuesta;
+    }
+    public function entregarPedido($id_pedido) {
+        $respuesta=array("codigoRespuesta"=>0,"mensajeRespuesta"=>"Exito al entregarPedido.");
+        $sql="CALL entregarPedido(?)";
+        $this->db->trans_begin();
+        $query=$this->db->query($sql,array($id_pedido));
         if ($this->db->trans_status()===FALSE) {
             $db_error=$this->db->error();
             if (strcmp($db_error["code"],"00000")!=0) {

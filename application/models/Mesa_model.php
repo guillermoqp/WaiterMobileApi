@@ -11,4 +11,12 @@ class Mesa_Model extends CI_Model {
         $query->free_result();
         return $mesas;
     }
+    public function getImportebyMesa($idMesa) {
+        $sql="CALL getImportebyMesa(?)" ;
+        $query=$this->db->query($sql,array($idMesa)); 
+        $importe=$query->row_array();
+        $query->next_result(); 
+        $query->free_result();
+        return $importe;
+    }
 }

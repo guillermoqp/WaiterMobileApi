@@ -4,8 +4,8 @@ $config["nombreApi"]="WaiterMobile API JWT.";
 $config["codigoApi"]="WaiterMobile";
 $config["versionApi"]="1.0";
 
-//$urlBase=(isset($_SERVER['HTTPS'])?"https://":"http://").$_SERVER['HTTP_HOST']."/AgroCloud"; /* LOCAL */
-$urlBase=(isset($_SERVER['HTTPS'])?"https://":"http://").$_SERVER['HTTP_HOST']; /* HEROKU */
+$urlBase=(isset($_SERVER['HTTPS'])?"https://":"http://").$_SERVER['HTTP_HOST']."/AgroCloud"; /* LOCAL */
+//$urlBase=(isset($_SERVER['HTTPS'])?"https://":"http://").$_SERVER['HTTP_HOST']; /* HEROKU */
 $config['base_url']=$urlBase;
 $config['index_page']='index.php';
 $config['uri_protocol']='AUTO';
